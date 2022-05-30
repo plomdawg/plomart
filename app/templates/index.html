@@ -37,7 +37,12 @@
           faces have been randomly generated
         </div>
         <br /><br /><br />
-        <button class="btn large green rounded" onclick="reloadImage()">
+        <button
+          class="btn large green rounded"
+          id="new"
+          onclick="reloadImage()"
+          disabled="disabled"
+        >
           NEW
         </button>
         <script>
@@ -52,6 +57,7 @@
             var count = parseInt(counter.innerHTML) + 1;
             counter.innerHTML = count;
           }
+          $("new").removeAttr("disabled");
         </script>
       </center>
     </div>
