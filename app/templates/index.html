@@ -33,11 +33,9 @@
         <img id="image" src="{{ url_for('character') }}" />
         <p id="test"></p>
         <br />
-        <div>
-          <center>
-            <p class="cyan" id="count">{{ count }}</p>
-            <p>faces have been randomly generated</p>
-          </center>
+        <div class="cyan container padded center">
+          <p id="count">{{ count }}</p>
+          faces have been randomly generated
         </div>
         <br /><br /><br />
         <button class="btn large green rounded" onclick="reloadImage()">
