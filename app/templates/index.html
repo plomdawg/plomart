@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/stupid.css') }}"
+      href="{{ url_for('static', filename='css/main.css') }}"
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/main.css') }}"
+      href="{{ url_for('static', filename='css/stupid.css') }}"
     />
     <title>plomart</title>
 
@@ -30,17 +30,46 @@
     <div class="main-content">
       <center>
         <br /><br /><br />
-        <img id="image" src="{{ url_for('character') }}" />
-        <p id="test"></p>
+        <img
+          id="image"
+          onload="imageLoaded()"
+          src="{{ url_for('character') }}"
+        />
+        <br />
+        <div class="container padded cyan center">
+          <strong id="count">{{ count }}</strong>
+          faces have been randomly generated
+        </div>
         <br /><br /><br />
-        <button class="btn large green rounded" onclick="reloadImage()">
-          NEW
+        <button
+          class="btn large green rounded"
+          id="new"
+          onclick="reloadImage()"
+        >
+          <span class="button__text">NEW</span>
         </button>
         <script>
           var link = "{{ url_for('character') }}";
           function reloadImage() {
-            var date = new Date();
+            // Disable the button
+            const button = document.getElementById("new");
+            button.setAttribute("disabled", "");
+            button.classList.add("button--loading");
+
+            // use a new URL so the image isn't cached
+            const date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
+
+            // increase the counter
+            const counter = document.getElementById("count");
+            const count = parseInt(counter.innerHTML) + 1;
+            counter.innerHTML = count;
+          }
+          function imageLoaded() {
+            // Re-enable the button
+            const button = document.getElementById("new");
+            button.removeAttribute("disabled");
+            button.classList.remove("button--loading");
           }
         </script>
       </center>
