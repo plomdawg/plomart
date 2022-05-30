@@ -43,21 +43,14 @@
         <script>
           var link = "{{ url_for('character') }}";
           function reloadImage() {
+            // use a new URL so the image isn't cached
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
+
+            // increase the counter
             var counter = document.getElementById("count");
-            console.log(counter);
-            var test = "test" + counter + "test";
-            console.log(test);
-            console.log(typeof test);
-            console.log(counter.innerHTML);
-            console.log(typeof counter.innerHTML);
-            console.log(parseInt(counter.innerHTML));
-            console.log(typeof parseInt(counter.innerHTML));
             var count = parseInt(counter.innerHTML) + 1;
-            console.log(count);
-            counter.innerHTML = toString(count);
-            console.log(toString(count));
+            counter.innerHTML = count;
           }
         </script>
       </center>
