@@ -27,3 +27,31 @@ These files are then placed into the `parts/` folder and are selected at random.
 ## Examples
 
 ![collage](https://user-images.githubusercontent.com/6510862/170970149-1f7e37e4-ac06-41ab-8874-04f2e3623c49.png)
+
+
+## Adding the metrics to Home Assistant
+
+Using a rest sensor and an exposed endpoint, I can keep track of faces generated in Home Assistant.
+
+```yaml
+- platform: rest
+  name: plomart faces generated
+  resource: http://art.plom.one/faces_generated
+  scan_interval: 3600 # seconds = 1 hour
+```
+
+lovelace (using the custom card [apexcharts](https://github.com/RomRider/apexcharts-card)):
+```yaml
+type: custom:apexcharts-card
+header:
+  show: true
+  title: Faces Generated
+  show_states: true
+  colorize_states: true
+series:
+  - entity: sensor.plomart_faces_generated
+```
+
+![image](https://user-images.githubusercontent.com/6510862/170972696-0690c99b-7a4a-47ce-a172-edda010c1ab2.png)
+
+
