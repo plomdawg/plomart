@@ -34,8 +34,10 @@
         <p id="test"></p>
         <br />
         <div>
-          <p id="count">{{ count }}</p>
-          <p>faces have been randomly generated</p>
+          <center>
+            <p id="count">{{ count }}</p>
+            <p>faces have been randomly generated</p>
+          </center>
         </div>
         <br /><br /><br />
         <button class="btn large green rounded" onclick="reloadImage()">
@@ -47,7 +49,7 @@
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
             var count = parseInt(document.getElementById("count").innerHTML);
-            document.getElementById("count").innerHTML = count + 1;
+            document.getElementById("count").innerHTML = toString(count + 1);
           }
         </script>
       </center>
