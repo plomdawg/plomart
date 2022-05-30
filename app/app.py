@@ -26,6 +26,11 @@ def index():
     return flask.render_template("./index.html", count=rd.get("faces_generated"))
 
 
+@app.route('/faces_generated')
+def faces_generated():
+    return rd.get("faces_generated")
+
+
 @app.route('/character.png')
 def character():
     # Generate a random character
