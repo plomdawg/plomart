@@ -48,7 +48,7 @@
           var link = "{{ url_for('character') }}";
           function reloadImage() {
             // Disable the button
-            button = document.getElementById("new");
+            var button = document.getElementById("new");
             button.setAttribute("disabled", "");
             button.classList.add("button--loading");
 
@@ -60,10 +60,11 @@
             var counter = document.getElementById("count");
             var count = parseInt(counter.innerHTML) + 1;
             counter.innerHTML = count;
+
+            // Re-enable the button
+            document.getElementById("new").removeAttribute("disabled");
+            button.classList.remove("button--loading");
           }
-          // Re-enable the button
-          document.getElementById("new").removeAttribute("disabled");
-          button.classList.remove("button--loading");
         </script>
       </center>
     </div>
