@@ -6,7 +6,7 @@ import os
 app = flask.Flask(__name__)
 
 # Get app IP and port from env vars, default to http://localhost:5000
-APP_IP = os.environ.get('APP_IP', "127.0.0.1")
+APP_IP = os.environ.get("APP_IP", "127.0.0.1")
 PORT = os.environ.get("PORT", 5000)
 
 
@@ -40,4 +40,5 @@ def character():
 if __name__ == "__main__":
     app.host = "0.0.0.0"
     app.port = PORT
+    print(f"Running on port {PORT}")
     app.run()
