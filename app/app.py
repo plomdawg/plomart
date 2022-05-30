@@ -28,7 +28,7 @@ def index():
 
 @app.route('/faces_generated')
 def faces_generated():
-    return rd.get("faces_generated")
+    return int(rd.get("faces_generated"))
 
 
 @app.route('/character.png')
