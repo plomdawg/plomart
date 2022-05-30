@@ -14,7 +14,7 @@ I created a new project with a square canvas on [Photopea](https://www.photopea.
 
 ![image](https://user-images.githubusercontent.com/6510862/170896772-d60c0d50-0200-426d-a7f0-dc5a9e7ac5ee.png)
 
-Each layer holds one part, named `[part][number]`.
+Each layer holds one part, named `[part][number]`. *Looks awful when all the layers are shown:*
 
 ![image](https://user-images.githubusercontent.com/6510862/170896746-509e936b-764c-4aaa-ae37-e059fa15b10b.png)
 
@@ -26,4 +26,4 @@ These files are then placed into the `parts/` folder, and are selected at random
 
 ## Examples
 
-![collage](https://user-images.githubusercontent.com/6510862/170897511-dba25b84-68fd-490f-b4f5-27df4d81a08a.png)
+![collage](https://user-images.githubusercontent.com/6510862/170970149-1f7e37e4-ac06-41ab-8874-04f2e3623c49.png)
