@@ -45,10 +45,10 @@ def create_character() -> Image:
     paste_image(image, random.choice(get_files("body")))
 
     # Fill the body color
+    body_color = random_color()
+
     # Use the middle of the image as the starting point.
     seed = (220, 220)
-    print(f"Color at seed {seed}: {image.getpixel(seed)}")
-    body_color = random_color()
     ImageDraw.floodfill(image, seed, body_color)
 
     # Draw the face
@@ -76,7 +76,7 @@ def create_collage(columns, rows) -> Image:
 
 if __name__ == "__main__":
     output_file = "output.png"
-    collage = create_collage(5, 5)
+    collage = create_collage(10, 10)
     collage.save(output_file)
 
     # while True:
