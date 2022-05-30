@@ -5,6 +5,10 @@ import os
 
 app = flask.Flask(__name__)
 
+# Get app IP and port from env vars, default to http://localhost:5000
+APP_IP = os.environ.get('APP_IP', "127.0.0.1")
+PORT = os.environ.get("PORT", 5000)
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -31,3 +35,9 @@ def character():
     file_object.seek(0)
 
     return flask.send_file(file_object, mimetype='image/PNG')
+
+
+if __name__ == "__main__":
+    app.host = "0.0.0.0"
+    app.port = PORT
+    app.run()
