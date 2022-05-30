@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="description" content="plomart" />
-    <meta name="author" content="Avalon Parton" />
+    <meta name="author" content="Avalon Parton (@plomdawg)" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -33,7 +33,9 @@
         <img id="image" src="{{ url_for('character') }}" />
         <p id="test"></p>
         <br /><br /><br />
-        <button onclick="reloadImage()">NEW</button>
+        <button class="btn large green rounded" onclick="reloadImage()">
+          NEW
+        </button>
         <script>
           var link = "{{ url_for('character') }}";
           function reloadImage() {
