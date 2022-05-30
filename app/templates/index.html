@@ -30,7 +30,11 @@
     <div class="main-content">
       <center>
         <br /><br /><br />
-        <img id="image" src="{{ url_for('character') }}" />
+        <img
+          id="image"
+          onload="imageLoaded()"
+          src="{{ url_for('character') }}"
+        />
         <br />
         <div class="container padded cyan center">
           <strong id="count">{{ count }}</strong>
@@ -60,7 +64,8 @@
             var counter = document.getElementById("count");
             var count = parseInt(counter.innerHTML) + 1;
             counter.innerHTML = count;
-
+          }
+          function imageLoaded() {
             // Re-enable the button
             document.getElementById("new").removeAttribute("disabled");
             button.classList.remove("button--loading");
