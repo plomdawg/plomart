@@ -100,7 +100,7 @@ def create_collage(columns, rows) -> Image:
     # Fill in the characters
     for row in range(0, rows):
         for column in range(0, columns):
-            character = create_character()
+            character = create_random_character()
             x = IMAGE_WIDTH * column
             y = IMAGE_HEIGHT * row
             image.paste(character, (x, y))
@@ -109,7 +109,11 @@ def create_collage(columns, rows) -> Image:
 
 
 if __name__ == "__main__":
+    collage = create_collage(5, 5)
+    print("created random collage")
+    collage.save("collage.png")
     while True:
         character = create_random_character()
+        print("created random character")
         character.save("output.png")
         time.sleep(0.25)
