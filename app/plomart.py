@@ -3,6 +3,7 @@ import time
 import glob
 import os
 from PIL import Image, ImageDraw
+from pathlib import Path
 
 SCRIPT_LOCATION = os.path.realpath(__file__)
 PARTS_DIR = os.path.join(os.path.dirname(SCRIPT_LOCATION), 'parts')
@@ -10,35 +11,35 @@ IMAGE_WIDTH = 420
 IMAGE_HEIGHT = 420
 
 
-def get_part_files(part) -> list:
-    """ Returns a list of files for a part """
-    return glob.glob(f"{PARTS_DIR}/{part}*.png")
+class Part:
+    def __init__(self, kind, path):
+        # body, eyes, mouth, or nose
+        self.kind = kind
+        # path to the .png (e.g. "parts/nose2.png")
+        self.path = Path(path)
+        # name (e.g. "nose2")
+        self.name = self.path.name[0:-4]
+        # number (e.g. "2")
+        self.number = self.name[-1:]
+        # open the image file
+        self.image = Image.open(self.path).convert('RGBA')
+
+
+def get_parts(part) -> list:
+    """ Returns a list of Part for some type """
+    return [Part(kind=part, path=file_path) for file_path in glob.glob(f"{PARTS_DIR}/{part}*.png")]
 
 
 # Load the part files.
-BODY_PARTS = get_part_files("body")
-EYES_PARTS = get_part_files("eyes")
-MOUTH_PARTS = get_part_files("mouth")
-NOSE_PARTS = get_part_files("nose")
+BODY_PARTS = get_parts("body")
+EYES_PARTS = get_parts("eyes")
+MOUTH_PARTS = get_parts("mouth")
+NOSE_PARTS = get_parts("nose")
 
 
 def random_color() -> tuple:
     """ Returns a random color as a tuple """
     return tuple(random.choices(range(256), k=3))
-
-
-def paste_image(background: Image, foreground_path: str) -> Image:
-    """ Pastes an image onto another
-
-    Arguments:
-    background -- Image to use as the background
-    foreground_path -- File path to the foreground image
-
-    Returns the combined Image
-    """
-    foreground = Image.open(foreground_path).convert('RGBA')
-    background.paste(foreground, mask=foreground)
-    return background
 
 
 def create_character(background_color, body_color, body, eyes, mouth, nose) -> Image:
@@ -59,7 +60,7 @@ def create_character(background_color, body_color, body, eyes, mouth, nose) -> I
     image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), background_color)
 
     # Draw the body
-    paste_image(image, body)
+    image.paste(body.image, mask=body.image)
 
     # Fill the body color
     # Use the middle of the image as the starting point
@@ -67,9 +68,9 @@ def create_character(background_color, body_color, body, eyes, mouth, nose) -> I
     ImageDraw.floodfill(image, seed, body_color)
 
     # Draw the face
-    paste_image(image, eyes)
-    paste_image(image, nose)
-    paste_image(image, mouth)
+    image.paste(eyes.image, mask=eyes.image)
+    image.paste(nose.image, mask=nose.image)
+    image.paste(mouth.image, mask=mouth.image)
 
     return image
 
