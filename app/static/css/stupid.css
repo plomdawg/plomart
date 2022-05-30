@@ -124,6 +124,7 @@ main {
 [type="button"],
 [type="submit"],
 button {
+  position: relative;
   padding: 0.5em 1em;
   margin: 0 0.5em 0.5em 0;
   display: inline-block;
