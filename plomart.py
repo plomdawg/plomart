@@ -5,6 +5,8 @@ import os
 from PIL import Image, ImageDraw
 
 PARTS_DIR = "./parts"
+IMAGE_WIDTH = 420
+IMAGE_HEIGHT = 420
 
 
 def random_color() -> tuple:
@@ -31,12 +33,13 @@ def paste_image(background: Image, foreground_path: str) -> None:
     background.paste(foreground, mask=foreground)
 
 
-def create_masterpiece(output_file):
+def create_character() -> Image:
+    """ Returns an Image containing 1 random character and background """
     # Generate a random color for the background
     color = random_color()
 
     # Create the image and draw the background
-    image = Image.new("RGB", (420, 420), color)
+    image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), color)
 
     # Draw the body
     paste_image(image, random.choice(get_files("body")))
@@ -53,12 +56,30 @@ def create_masterpiece(output_file):
     paste_image(image, random.choice(get_files("nose")))
     paste_image(image, random.choice(get_files("mouth")))
 
-    # Save the file
-    image.save(output_file)
+    return image
+
+
+def create_collage(columns, rows) -> Image:
+    # Create a large canvas
+    image = Image.new("RGB", (IMAGE_WIDTH * columns, IMAGE_HEIGHT * rows))
+
+    # Fill in the characters
+    for row in range(0, rows):
+        for column in range(0, columns):
+            character = create_character()
+            x = IMAGE_WIDTH * column
+            y = IMAGE_HEIGHT * row
+            image.paste(character, (x, y))
+
+    return image
 
 
 if __name__ == "__main__":
     output_file = "output.png"
-    while True:
-        create_masterpiece(output_file)
-        time.sleep(0.25)
+    collage = create_collage(5, 5)
+    collage.save(output_file)
+
+    # while True:
+    #    character = create_character()
+    #    character.save(output_file)
+    #    time.sleep(0.25)
