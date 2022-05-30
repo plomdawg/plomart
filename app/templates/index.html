@@ -48,7 +48,9 @@
           var link = "{{ url_for('character') }}";
           function reloadImage() {
             // Disable the button
-            document.getElementById("new").setAttribute("disabled", "");
+            button = document.getElementById("new");
+            button.setAttribute("disabled", "");
+            button.classList.add("button--loading");
 
             // use a new URL so the image isn't cached
             var date = new Date();
@@ -61,6 +63,7 @@
           }
           // Re-enable the button
           document.getElementById("new").removeAttribute("disabled");
+          button.classList.remove("button--loading");
         </script>
       </center>
     </div>
