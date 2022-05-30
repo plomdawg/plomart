@@ -33,7 +33,7 @@
         <img
           id="image"
           onload="imageLoaded()"
-          src="{{ url_for('character') }}"
+          src="{{ url_for('random_character') }}"
         />
         <br />
         <div class="container padded cyan center">
@@ -49,7 +49,7 @@
           <span class="button__text">NEW</span>
         </button>
         <script>
-          var link = "{{ url_for('character') }}";
+          var link = "{{ url_for('random_character') }}";
           function reloadImage() {
             // Disable the button
             const button = document.getElementById("new");

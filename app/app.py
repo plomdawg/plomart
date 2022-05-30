@@ -2,7 +2,6 @@ import flask
 import plomart
 import io
 import os
-import redis
 
 
 app = flask.Flask(__name__)
@@ -11,8 +10,12 @@ app = flask.Flask(__name__)
 APP_IP = os.environ.get("APP_IP", "127.0.0.1")
 PORT = os.environ.get("PORT", 5000)
 
-# Connect to the Redis server running in heroku
-rd = redis.from_url(os.environ.get("REDIS_URL"))
+# Check if we have a Redis server to run (heroku runs Redis app)
+rd = None
+redis_url = os.environ.get("REDIS_URL")
+if redis_url is not None:
+    import redis
+    rd = redis.from_url(redis_url)
 
 
 @app.route('/favicon.ico')
@@ -23,17 +26,23 @@ def favicon():
 
 @app.route('/')
 def index():
-    count = rd.get("faces_generated").decode('ascii')
+    if rd is None:
+        count = "0"
+    else:
+        count = rd.get("faces_generated").decode('ascii')
     return flask.render_template("./index.html", count=count)
 
 
 @app.route('/faces_generated')
 def faces_generated():
-    return rd.get("faces_generated").decode('ascii')
+    if rd is None:
+        return 0
+    else:
+        return rd.get("faces_generated").decode('ascii')
 
 
-@app.route('/character.png')
-def character():
+@app.route('/random_character.png')
+def random_character():
     # Generate a random character
     image = plomart.create_random_character()
 
@@ -47,7 +56,10 @@ def character():
     file_object.seek(0)
 
     # Increment counter of faces generated
-    faces_generated = rd.incr("faces_generated")
+    if rd is None:
+        faces_generated = 0
+    else:
+        faces_generated = rd.incr("faces_generated")
 
     return flask.send_file(file_object, mimetype='image/PNG')
 
