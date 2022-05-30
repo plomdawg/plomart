@@ -38,7 +38,6 @@ def character():
 
 
 if __name__ == "__main__":
-    app.host = "0.0.0.0"
-    app.port = PORT
+    from waitress import serve
     print(f"Running on port {PORT}")
-    app.run()
+    serve(app, host="0.0.0.0", port=PORT)

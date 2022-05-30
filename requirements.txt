@@ -3,3 +3,6 @@ flask
 
 # For generating images.
 Pillow
+
+# For running the flask server.
+waitress
