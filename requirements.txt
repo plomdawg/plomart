@@ -6,3 +6,6 @@ Pillow
 
 # For running the flask server.
 waitress
+
+# For connecting to Redis.
+redis
