@@ -23,7 +23,8 @@ def favicon():
 
 @app.route('/')
 def index():
-    return flask.render_template("./index.html", count=rd.get("faces_generated"))
+    count = rd.get("faces_generated").decode('ascii')
+    return flask.render_template("./index.html", count=count)
 
 
 @app.route('/faces_generated')
