@@ -10,14 +10,21 @@ IMAGE_WIDTH = 420
 IMAGE_HEIGHT = 420
 
 
-def random_color() -> tuple:
-    """ Returns a random color as a tuple """
-    return tuple(random.choices(range(256), k=3))
-
-
 def get_part_files(part) -> list:
     """ Returns a list of files for a part """
     return glob.glob(f"{PARTS_DIR}/{part}*.png")
+
+
+# Load the part files.
+BODY_PARTS = get_part_files("body")
+EYES_PARTS = get_part_files("eyes")
+MOUTH_PARTS = get_part_files("mouth")
+NOSE_PARTS = get_part_files("nose")
+
+
+def random_color() -> tuple:
+    """ Returns a random color as a tuple """
+    return tuple(random.choices(range(256), k=3))
 
 
 def paste_image(background: Image, foreground_path: str) -> Image:
@@ -74,10 +81,10 @@ def create_random_character() -> Image:
     body_color = random_color()
 
     # Generate random parts for the body and face
-    body = random.choice(get_part_files("body"))
-    eyes = random.choice(get_part_files("eyes"))
-    mouth = random.choice(get_part_files("mouth"))
-    nose = random.choice(get_part_files("nose"))
+    body = random.choice(BODY_PARTS)
+    eyes = random.choice(EYES_PARTS)
+    mouth = random.choice(MOUTH_PARTS)
+    nose = random.choice(NOSE_PARTS)
 
     return create_character(background_color, body_color, body, eyes, mouth, nose)
 
