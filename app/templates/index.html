@@ -46,7 +46,11 @@
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
             var counter = document.getElementById("count");
+            console.log(counter);
+            console.log(counter.innerHTML);
+            console.log(parseInt(counter.innerHTML));
             var count = parseInt(counter.innerHTML) + 1;
+            console.log(count);
             counter.innerHTML = toString(count);
             console.log(toString(count));
           }
