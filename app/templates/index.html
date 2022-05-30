@@ -32,6 +32,11 @@
         <br /><br /><br />
         <img id="image" src="{{ url_for('character') }}" />
         <p id="test"></p>
+        <br />
+        <div>
+          <p id="count">{{ count }}</p>
+          <p>faces have been randomly generated</p>
+        </div>
         <br /><br /><br />
         <button class="btn large green rounded" onclick="reloadImage()">
           NEW
@@ -41,6 +46,8 @@
           function reloadImage() {
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
+            var count = parseInt(document.getElementById("count").innerHTML);
+            document.getElementById("count").innerHTML = count + 1;
           }
         </script>
       </center>
