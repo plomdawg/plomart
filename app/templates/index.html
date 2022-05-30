@@ -41,13 +41,15 @@
           class="btn large green rounded"
           id="new"
           onclick="reloadImage()"
-          disabled="disabled"
         >
           NEW
         </button>
         <script>
           var link = "{{ url_for('character') }}";
           function reloadImage() {
+            // Disable the button
+            document.getElementById("new").disabled = true;
+
             // use a new URL so the image isn't cached
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
@@ -57,7 +59,8 @@
             var count = parseInt(counter.innerHTML) + 1;
             counter.innerHTML = count;
           }
-          $("new").removeAttr("disabled");
+          // Re-enable the button
+          document.getElementById("new").disabled = false;
         </script>
       </center>
     </div>
