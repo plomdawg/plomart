@@ -49,7 +49,9 @@
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
             var count = parseInt(document.getElementById("count").innerHTML);
-            document.getElementById("count").innerHTML = toString(count + 1);
+            console.log("count " + count);
+            document.getElementById("count").innerHTML = toString(count++);
+            console.log(toString(count + 1));
           }
         </script>
       </center>
