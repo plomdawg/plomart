@@ -52,9 +52,13 @@ def create_character() -> Image:
     ImageDraw.floodfill(image, seed, body_color)
 
     # Draw the face
-    paste_image(image, random.choice(get_files("eyes")))
-    paste_image(image, random.choice(get_files("nose")))
-    paste_image(image, random.choice(get_files("mouth")))
+    nose = random.choice(get_files("nose"))
+    mouth = random.choice(get_files("mouth"))
+    eyes = random.choice(get_files("eyes"))
+    print(f"Face: {eyes} {nose} {mouth}")
+    paste_image(image, eyes)
+    paste_image(image, nose)
+    paste_image(image, mouth)
 
     return image
 
@@ -76,10 +80,9 @@ def create_collage(columns, rows) -> Image:
 
 if __name__ == "__main__":
     output_file = "output.png"
-    collage = create_collage(10, 10)
-    collage.save(output_file)
+    # collage.save(output_file)
 
-    # while True:
-    #    character = create_character()
-    #    character.save(output_file)
-    #    time.sleep(0.25)
+    while True:
+        character = create_character()
+        character.save(output_file)
+        time.sleep(0.25)

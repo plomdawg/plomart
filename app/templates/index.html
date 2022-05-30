@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="plomart" />
+    <meta name="author" content="Avalon Parton" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/stupid.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />
+    <title>plomart</title>
+
+    <p id="demo"></p>
+  </head>
+
+  <body>
+    <div class="header green">
+      <div class="container pink">
+        <br />
+        <center><h1>plomart</h1></center>
+        <br />
+      </div>
+    </div>
+
+    <div class="main-content">
+      <center>
+        <br /><br /><br />
+        <img id="image" src="{{ url_for('character') }}" />
+        <p id="test"></p>
+        <br /><br /><br />
+        <button onclick="reloadImage()">NEW</button>
+        <script>
+          var link = "{{ url_for('character') }}";
+          function reloadImage() {
+            var date = new Date();
+            document.getElementById("image").src = link + "?" + date.getTime();
+          }
+        </script>
+      </center>
+    </div>
+
+    <div id="footer">
+      <br />Made by Avalon Parton (@plomdawg)
+      <a href="https://github.com/plomdawg/plomart">source on GitHub</a>.
+    </div>
+  </body>
+</html>

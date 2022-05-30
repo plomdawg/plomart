@@ -1,0 +1,32 @@
+html,
+body {
+  background-color: #434a56;
+  height: 100%;
+}
+
+#wrapper {
+  min-height: 100%;
+  margin-bottom: -40px;
+  padding-bottom: 40px;
+}
+
+#content {
+  background-color: #586170;
+  color: white;
+}
+
+#footer {
+  color: gray;
+  text-align: center;
+  height: 40px;
+  width: 100%;
+}
+
+#footer a {
+  color: white;
+}
+
+#footer a:hover {
+  color: pink;
+  text-decoration: none;
+}
