@@ -11,9 +11,10 @@ APP_IP = os.environ.get("APP_IP", "127.0.0.1")
 PORT = os.environ.get("PORT", 5000)
 
 # Check if we have a Redis server to run (heroku runs Redis app)
-rd = None
 redis_url = os.environ.get("REDIS_URL")
-if redis_url is not None:
+if redis_url is None:
+    rd = None
+else:
     import redis
     rd = redis.from_url(redis_url)
 
@@ -26,19 +27,13 @@ def favicon():
 
 @app.route('/')
 def index():
-    if rd is None:
-        count = "0"
-    else:
-        count = rd.get("faces_generated").decode('ascii')
+    count = 0 if rd is None else rd.get("faces_generated").decode('ascii')
     return flask.render_template("./index.html", count=count)
 
 
 @app.route('/faces_generated')
 def faces_generated():
-    if rd is None:
-        return 0
-    else:
-        return rd.get("faces_generated").decode('ascii')
+    return 0 if rd is None else rd.get("faces_generated").decode('ascii')
 
 
 @app.route('/random_character.png')
@@ -56,11 +51,7 @@ def random_character():
     file_object.seek(0)
 
     # Increment counter of faces generated
-    if rd is None:
-        faces_generated = 0
-    else:
-        faces_generated = rd.incr("faces_generated")
-
+    faces_generated = 0 if rd is None else rd.incr("faces_generated")
     return flask.send_file(file_object, mimetype='image/PNG')
 
 
