@@ -45,12 +45,10 @@
           function reloadImage() {
             var date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
-            var count = parseInt(document.getElementById("count").innerHTML);
-            console.log(document.getElementById("count"));
-            console.log(document.getElementById("count").innerHTML);
-            console.log("count " + count);
-            document.getElementById("count").innerHTML = toString(count++);
-            console.log(toString(count + 1));
+            var counter = document.getElementById("count");
+            var count = parseInt(counter.innerHTML) + 1;
+            counter.innerHTML = toString(count);
+            console.log(toString(count));
           }
         </script>
       </center>
