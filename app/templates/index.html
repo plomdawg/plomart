@@ -52,18 +52,17 @@
           var link = "{{ url_for('character') }}";
           function reloadImage() {
             // Disable the button
-            var button = document.getElementById("new");
+            const button = document.getElementById("new");
             button.setAttribute("disabled", "");
             button.classList.add("button--loading");
 
             // use a new URL so the image isn't cached
-            var date = new Date();
+            const date = new Date();
             document.getElementById("image").src = link + "?" + date.getTime();
 
             // increase the counter
-            var counter = document.getElementById("count");
-            var count = parseInt(counter.innerHTML) + 1;
-            counter.innerHTML = count;
+            const counter = document.getElementById("count");
+            counter.innerHTML = parseInt(counter.innerHTML)++;
           }
           function imageLoaded() {
             // Re-enable the button
