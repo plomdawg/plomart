@@ -12,7 +12,8 @@ PORT = os.environ.get("PORT", 5000)
 
 @app.route('/favicon.ico')
 def favicon():
-    return flask.send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/x-icon')
+    image_dir = os.path.join(app.root_path, 'static')
+    return flask.send_from_directory(image_dir, 'favicon.ico', mimetype='image/x-icon')
 
 
 @app.route('/')
@@ -20,10 +21,10 @@ def index():
     return flask.render_template("./index.html")
 
 
-@app.route('/image.png')
+@app.route('/character.png')
 def character():
     # Generate a random character
-    image = plomart.create_character(os.path.join(app.root_path, 'parts'))
+    image = plomart.create_random_character()
 
     # Create file-object in memory
     file_object = io.BytesIO()
@@ -38,6 +39,7 @@ def character():
 
 
 if __name__ == "__main__":
+    # Use waitress to serve the flask app so it's secure.
     from waitress import serve
-    print(f"Running on port {PORT}")
+    print(f"Running web app on http://{APP_IP}:{PORT}")
     serve(app, host="0.0.0.0", port=PORT)
