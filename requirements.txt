@@ -1,0 +1,5 @@
+# For running the webserver
+flask
+
+# For generating images.
+Pillow
