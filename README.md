@@ -14,15 +14,15 @@ I created a new project with a square canvas on [Photopea](https://www.photopea.
 
 ![image](https://user-images.githubusercontent.com/6510862/170896772-d60c0d50-0200-426d-a7f0-dc5a9e7ac5ee.png)
 
-Each layer holds one part, named `[part][number]`. *Looks awful when all the layers are shown:*
+Each layer holds one part, named `[part][number]`. *It looks awful when all the layers are shown:*
 
 ![image](https://user-images.githubusercontent.com/6510862/170896746-509e936b-764c-4aaa-ae37-e059fa15b10b.png)
 
-Using `File > Export Layers`, I can save each layer as it's own .png file.
+I saved each layer as it's own .png file using `File > Export Layers`.
 
 ![image](https://user-images.githubusercontent.com/6510862/170896865-23b38a87-a519-4491-8ae2-295589bfb4e8.png)
 
-These files are then placed into the `parts/` folder, and are selected at random.
+These files are then placed into the `parts/` folder and are selected at random.
 
 ## Examples
 
