@@ -23,7 +23,7 @@ def index():
 @app.route('/image.png')
 def character():
     # Generate a random character
-    image = plomart.create_character()
+    image = plomart.create_character(os.path.join(app.root_path, 'parts'))
 
     # Create file-object in memory
     file_object = io.BytesIO()

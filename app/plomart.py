@@ -16,9 +16,9 @@ def random_color() -> tuple:
     return color
 
 
-def get_files(part) -> list:
+def get_files(parts_path, part) -> list:
     """ Returns a list of files for a part """
-    return glob.glob(f"{PARTS_DIR}/{part}*.png")
+    return glob.glob(f"{parts_path}/{part}*.png")
 
 
 def paste_image(background: Image, foreground_path: str) -> None:
@@ -33,7 +33,7 @@ def paste_image(background: Image, foreground_path: str) -> None:
     background.paste(foreground, mask=foreground)
 
 
-def create_character() -> Image:
+def create_character(parts_path) -> Image:
     """ Returns an Image containing 1 random character and background """
     # Generate a random color for the background
     color = random_color()
@@ -42,7 +42,7 @@ def create_character() -> Image:
     image = Image.new("RGB", (IMAGE_WIDTH, IMAGE_HEIGHT), color)
 
     # Draw the body
-    paste_image(image, random.choice(get_files("body")))
+    paste_image(image, random.choice(get_files(parts_path, "body")))
 
     # Fill the body color
     body_color = random_color()
@@ -52,9 +52,9 @@ def create_character() -> Image:
     ImageDraw.floodfill(image, seed, body_color)
 
     # Draw the face
-    nose = random.choice(get_files("nose"))
-    mouth = random.choice(get_files("mouth"))
-    eyes = random.choice(get_files("eyes"))
+    nose = random.choice(get_files(parts_path, "nose"))
+    mouth = random.choice(get_files(parts_path, "mouth"))
+    eyes = random.choice(get_files(parts_path, "eyes"))
     print(f"Face: {eyes} {nose} {mouth}")
     paste_image(image, eyes)
     paste_image(image, nose)
