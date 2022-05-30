@@ -23,3 +23,8 @@ Using `File > Export Layers`, I can save each layer as it's own .png file.
 ![image](https://user-images.githubusercontent.com/6510862/170896865-23b38a87-a519-4491-8ae2-295589bfb4e8.png)
 
 These files are then placed into the `parts/` folder, and are selected at random.
+
+
+## Examples
+
+![collage](https://user-images.githubusercontent.com/6510862/170897511-dba25b84-68fd-490f-b4f5-27df4d81a08a.png)
