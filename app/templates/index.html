@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/stupid.css') }}"
+      href="{{ url_for('static', filename='css/main.css') }}"
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/main.css') }}"
+      href="{{ url_for('static', filename='css/stupid.css') }}"
     />
     <title>plomart</title>
 
@@ -46,7 +46,7 @@
           id="new"
           onclick="reloadImage()"
         >
-          NEW
+          <span class="button__text">NEW</span>
         </button>
         <script>
           var link = "{{ url_for('character') }}";
@@ -66,7 +66,8 @@
           }
           function imageLoaded() {
             // Re-enable the button
-            document.getElementById("new").removeAttribute("disabled");
+            const button = document.getElementById("new");
+            button.removeAttribute("disabled");
             button.classList.remove("button--loading");
           }
         </script>
