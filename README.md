@@ -1,6 +1,26 @@
-# plomart
+# Usage
 
-Resourced used:
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Generate a single collage/character:
+
+```bash
+python app/plomart.py
+```
+
+Run the web app:
+
+```bash
+python app/app.py
+```
+
+# Notes
+
+## Resourced Used
 
 - [photopea.com](https://www.photopea.com/) for creating the source images (6px pencil + fill tool)
 - [how to generate a random color](https://stackoverflow.com/questions/28999287/generate-random-colors-rgb)
@@ -14,7 +34,7 @@ I created a new project with a square canvas on [Photopea](https://www.photopea.
 
 ![image](https://user-images.githubusercontent.com/6510862/170896772-d60c0d50-0200-426d-a7f0-dc5a9e7ac5ee.png)
 
-Each layer holds one part, named `[part][number]`. *It looks awful when all the layers are shown:*
+Each layer holds one part, named `[part][number]`. _It looks scary when all the layers are shown:_
 
 ![image](https://user-images.githubusercontent.com/6510862/170896746-509e936b-764c-4aaa-ae37-e059fa15b10b.png)
 
@@ -22,12 +42,13 @@ I saved each layer as it's own .png file using `File > Export Layers`.
 
 ![image](https://user-images.githubusercontent.com/6510862/170896865-23b38a87-a519-4491-8ae2-295589bfb4e8.png)
 
-These files are then placed into the `parts/` folder and are selected at random.
+These files are then placed into the `parts/` folder.
+
+The script [app/plomart.py](./app/plomart.py) chooses some random colors and parts to create the characters.
 
 ## Examples
 
 ![collage](https://user-images.githubusercontent.com/6510862/170970149-1f7e37e4-ac06-41ab-8874-04f2e3623c49.png)
-
 
 ## Adding the metrics to Home Assistant
 
@@ -41,6 +62,7 @@ Using a rest sensor and an exposed endpoint, I can keep track of faces generated
 ```
 
 lovelace (using the custom card [apexcharts](https://github.com/RomRider/apexcharts-card)):
+
 ```yaml
 type: custom:apexcharts-card
 header:
@@ -53,5 +75,3 @@ series:
 ```
 
 ![image](https://user-images.githubusercontent.com/6510862/170972696-0690c99b-7a4a-47ce-a172-edda010c1ab2.png)
-
-

@@ -109,11 +109,11 @@ def create_collage(columns, rows) -> Image:
 
 
 if __name__ == "__main__":
-    collage = create_collage(5, 5)
-    print("created random collage")
-    collage.save("collage.png")
-    while True:
-        character = create_random_character()
-        print("created random character")
-        character.save("output.png")
-        time.sleep(0.25)
+    create_collage(5, 5).save("collage.png")
+    print("created random collage: collage.png")
+    create_random_character().save("output.png")
+    print("created random character: output.png")
+    # while True:
+    #    create_random_character().save("output.png")
+    #    print("created random character")
+    #    time.sleep(0.25)
