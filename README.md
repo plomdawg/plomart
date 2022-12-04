@@ -15,7 +15,7 @@ python app/plomart.py
 Run the web app:
 
 ```bash
-python app/app.py
+docker-compose up -d
 ```
 
 # Notes
@@ -25,7 +25,6 @@ python app/app.py
 - [photopea.com](https://www.photopea.com/) for creating the source images (6px pencil + fill tool)
 - [how to generate a random color](https://stackoverflow.com/questions/28999287/generate-random-colors-rgb)
 - [how to fill an image](https://www.geeksforgeeks.org/floodfill-image-using-python-pillow/) for coloring in the body
-- [adding heroku to Google Domains](https://stackoverflow.com/questions/63866651/how-to-associate-heroku-app-with-a-google-domain)
 - [creating a loading spinner button](https://dev.to/dcodeyt/create-a-button-with-a-loading-spinner-in-html-css-1c0h)
 
 ## Creating the parts

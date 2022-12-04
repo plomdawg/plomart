@@ -1,4 +1,4 @@
-# For running the webserver
+# For running the webserver.
 flask
 
 # For generating images.
